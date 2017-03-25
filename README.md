@@ -4,6 +4,43 @@ Autorzy: Adrian Podlawski, Mateusz Kleina rok 2017
 ## Słowa kluczowe
 Unity, Game, Multiplayer, Cooperation, Adventure, RPG, C#, Unity, Photon, PUN
 
+## Streszczenie
+W przeciwieństwie do większości gier sieciowych, w grę The Last Trinity może grać 3 graczy, a każdy z nich steruje inną postacią o odmiennych umiejętnościach, przy czym każda z postaci pełni kluczową rolę w rozgrywce.
+Postaci są unikatowe, przez co dwie osoby nie mogą dołączyć do rozgrywki takim samym typem bohatera. 
+Możemy wcielić się w postać maga, wojownika, lub łucznika. Mag posiada umiejętność unoszenia i przemieszczania ciężkich przedmiotów, oraz rzucania nimi.
+Wojownik jest postacią o dużej sile rażenia w bespośrednich starciach, natomiast łucznik umożliwia taktyczną rozgrywkę na większe dystanse.
+Gra posiada określone poziomy. Bez wykonania odpowiednich zadań, które uprzednio zleci nam NPC (Non-Player-Character) nie zdołamy przejść do kolejnego etapu.
+Świat rozgrywki jest w większości otwarty, co będzie umożliwia jego dowolną eksplorację, jednak gracz jest kierowany przez postaci poboczne na konkretne zadania porozrzucane w różnych miejscach tego świata.
+
+## Spis treści 
+1. Wstęp i opis
+   - Porównanie dostępnych rozwiązań,
+      - Wordl of Warcraft,
+      - Diablo 3
+      
+1. Projektowanie oraz przygotowanie środowiska
+   - Projekt Terenu,
+   - Projekt Postaci sterowanych przez gracza,
+   - Projekt systemu mulitplayer
+   - Instalacja niezbędnych narzędi
+   
+1. Implementacja
+   - Budowa terenu
+   - Tworzenie Postaci
+   - Ruch kamery
+   - Fizyka
+   - Animacje
+   - Poruszanie bohaterów
+   - Poruszanie postaci wrogów
+   - Nadanie bohaterom indywidualnych umiejętności
+   - Obrażenia
+   - Interakcja ze światem oraz NPC
+
+1. Bibliografia
+    - ksiązki,
+    - artykuły dostępne w Internecie,
+    - poradniki dostępne na YouTube
+
 ## Wstęp
 Gry komputerowe towarzyszą ludziom już od lat 40 XX-go wieku i należą obecnie do jednej z najpopularniejszych form rozrywki.
 Wraz z rozwojem technologii gry przybierają nowe formy, stają się coraz bardziej rozbudowane i zaawansowane graficznie.
@@ -13,13 +50,7 @@ Obecnie istnieje potężna biblioteka gier opartych o rozgrywkę sieciową, jedn
 W obecnej chwili na rynku dostępnych jest wiele silników gier, które dają możliwość tworzenia gry bez wdrażania się w szczegóły techniczne dotyczące renderowania obrazu i obsługi różnorakich kart graficznych, obliczania skomplikowanych równań fizycznych czy obsługi protokołów sieciowych. Tworzenie gier nie wymaga już niskopoziomowego kodu, stało się przyjaźniejsze i bardziej dostępne dla programistów chcących skupić się na samej mechanice gry.  
 Skłoniło nas to do stworzenia nieco odmiennej gry w nowoczesnym i popularnym silniku Unity3D, której rozgrywka polega na wspólnym pokonywaniu przeszkód i odkrywaniu dalszego ciągu tej samej historii a gracze zamknięci zostają we wspólnej ramie czasowej. Dotąd gry tego typu występowały głównie w postaci gier jednoosobowych, takich jak Far Cry, Tomb Raider, czy Grand Theft Auto. 
 
-## Streszczenie
-W przeciwieństwie do większości gier sieciowych, w grę The Last Trinity może grać 3 graczy, a każdy z nich steruje inną postacią o odmiennych umiejętnościach, przy czym każda z postaci pełni kluczową rolę w rozgrywce.
-Postaci są unikatowe, przez co dwie osoby nie mogą dołączyć do rozgrywki takim samym typem bohatera. 
-Możemy wcielić się w postać maga, wojownika, lub łucznika. Mag posiada umiejętność unoszenia i przemieszczania ciężkich przedmiotów, oraz rzucania nimi.
-Wojownik jest postacią o dużej sile rażenia w bespośrednich starciach, natomiast łucznik umożliwia taktyczną rozgrywkę na większe dystanse.
-Gra posiada określone poziomy. Bez wykonania odpowiednich zadań, które uprzednio zleci nam NPC (Non-Player-Character) nie zdołamy przejść do kolejnego etapu.
-Świat rozgrywki jest w większości otwarty, co będzie umożliwia jego dowolną eksplorację, jednak gracz jest kierowany przez postaci poboczne na konkretne zadania porozrzucane w różnych miejscach tego świata.
+
 
 ## Bibliografia
 - [Photon Documentation](https://doc-api.photonengine.com/en/pun/current/)
