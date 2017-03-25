@@ -19,25 +19,25 @@ Gra posiada określone poziomy. Bez wykonania odpowiednich zadań, które uprzed
       - Diablo 3
       
 1. Projektowanie oraz przygotowanie środowiska
-   - Projekt Terenu,
-   - Projekt Postaci sterowanych przez gracza,
-   - Projekt systemu mulitplayer
-   - Instalacja niezbędnych narzędi
+   - projekt Terenu,
+   - projekt Postaci sterowanych przez gracza,
+   - projekt systemu mulitplayer
+   - instalacja niezbędnych narzędzi
    
 1. Implementacja
-   - Budowa terenu
-   - Tworzenie Postaci
-   - Ruch kamery
-   - Fizyka
-   - Animacje
-   - Poruszanie bohaterów
-   - Poruszanie postaci wrogów
-   - Nadanie bohaterom indywidualnych umiejętności
-   - Obrażenia
-   - Interakcja ze światem oraz NPC
+   - budowa terenu
+   - tworzenie Postaci
+   - ruch kamery
+   - fizyka
+   - animacje
+   - poruszanie bohaterów
+   - poruszanie postaci wrogów
+   - nadanie bohaterom indywidualnych umiejętności
+   - obrażenia
+   - interakcja ze światem oraz NPC
 
 1. Bibliografia
-    - ksiązki,
+    - książki,
     - artykuły dostępne w Internecie,
     - poradniki dostępne na YouTube
 
