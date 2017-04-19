@@ -1,0 +1,20 @@
+\subsection{Poruszanie bohaterów}
+
+Poruszanie bohaterów działa na podobnej zasadzie jak mechanika skoku. Do zdarzeń fizycznych bohatera dodawana jest siła o wektorze skierowanym w kierunku określonym przez wciskany klawisz (W, S, A lub D).
+
+W przypadku chodzenia, animacja zależna jest od kierunku, w którym porusza się postać (cofanie, chodzenie bokiem).
+
+Dodatkowym elementem mechaniki poruszania jest bieg, który aktywowany jest poprzez wciśnięcie lewego klawisza Shift.
+
+\begin{lstlisting}[caption={Fragment kodu mechaniki biegania -- reakcja na wciśnięcie klawisza \name{W}}]
+run = Input.GetKey(KeyCode.LeftShift);
+anim.SetBool("Sprint", run);
+float speed = run ? runSpeed : walkSpeed;
+
+...
+
+if (Input.GetKey(KeyCode.W))
+{
+    rb.AddRelativeForce(Vector3.forward * speed, ForceMode.VelocityChange);
+}
+\end{lstlisting}

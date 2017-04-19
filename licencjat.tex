@@ -1,0 +1,99 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{caption}
+\usepackage{color}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{parskip}
+\usepackage{polski}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{csquotes}
+\usepackage{listings}
+
+\graphicspath{ {images/} }
+
+% Odległości między paragrafami oraz wcięcia
+\setlength{\parskip}{1em}
+\setlength{\parindent}{3em}
+
+% Środowisko bez page-breaków, z zachowanymi odległościami między paragrafami oraz wcięciami
+% NOTE: Póki co nie używane w treści licencjatu
+\newlength{\currentparskip}
+\newlength{\currentparindent}
+\newenvironment{nopgbreak}
+  {\setlength{\currentparskip}{\parskip}
+   \setlength{\currentparindent}{\parindent}
+   \begin{minipage}{\textwidth}
+   \setlength{\parskip}{\currentparskip}
+   \setlength{\parindent}{\currentparindent}
+  }
+  {\end{minipage}}
+
+% Grafiki bez wcięć akapitu
+\let\oldincludegraphics\includegraphics
+\renewcommand{\includegraphics}[2][]{\noindent\oldincludegraphics[#1]{#2}}
+
+% Specjalne oznaczenia
+\newcommand{\name}[1]{\textbf{\textcolor{NavyBlue}{#1}}}
+\newcommand{\todoadrian}{\textbf{\textcolor{red}{<< TO MIEJSCE WYPEŁNIA ADRIAN >>}}}
+\newcommand{\todomateusz}{\textbf{\textcolor{red}{<< TO MIEJSCE WYPEŁNIA MATEUSZ >>}}}
+
+% Podświetlanie składni C#
+\definecolor{bluekeywords}{rgb}{0.13,0.13,1}
+\definecolor{greencomments}{rgb}{0,0.5,0}
+\definecolor{redstrings}{rgb}{0.9,0,0}
+\lstset{language=[Sharp]C,
+captionpos=b,
+%numbers=left, %Nummerierung
+%numberstyle=\tiny, % kleine Zeilennummern
+frame=lines, % Oberhalb und unterhalb des Listings ist eine Linie
+showspaces=false,
+showtabs=false,
+breaklines=true,
+showstringspaces=false,
+breakatwhitespace=true,
+escapeinside={(*@}{@*)},
+commentstyle=\color{greencomments},
+morekeywords={partial, var, value, get, set},
+keywordstyle=\color{bluekeywords},
+stringstyle=\color{redstrings},
+basicstyle=\ttfamily\small,
+}
+
+% Dane licencjatu
+\title{Sieciowa fabularna\\gra komputerowa - The Trinity}
+\author{Kleina Mateusz, Podlawski Adrian}
+\date{12 kwietnia 2017}
+
+\begin{document}
+
+% Strona tytułowa
+\begin{titlepage}
+\maketitle
+\tableofcontents
+\end{titlepage}
+
+\section{Wstęp i opis}
+\subsection{Porównanie dostępnych rozwiązań}
+
+\section{Projektowanie oraz przygotowanie środowiska}
+\subsection{Projekt Terenu}
+\subsection{Projekt Postaci sterowanych przez gracza}
+\subsection{Projekt systemu mulitplayer}
+\subsection{Instalacja niezbędnych narzędzi}
+
+\section{Implementacja}
+  \include{budowa_terenu}
+  \subsection{Tworzenie Postaci}
+  \todoadrian
+  \include{ruch_kamery}
+  \include{fizyka}
+  \subsection{Animacje}
+  \todoadrian
+  \include{poruszanie_bohaterow}
+  \include{poruszanie_wrogow}
+
+  \subsection{Nadanie bohaterom indywidualnych umiejętności}
+  \subsection{Obrażenia}
+  \subsection{Interakcja ze światem oraz NPC}
+\end{document}
