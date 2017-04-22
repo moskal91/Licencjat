@@ -1,0 +1,14 @@
+\subsection{Multiplayer}
+Ostatnim elementem implementacji naszego projektu był system Multiplayer. Stworzyliśmy Menadżera naszej sieci, który odpowiednio łączył graczy z serwerem i kontrolował ilość osób w danej rozgrywce. Napotkaliśmy jednak wiele problemów, gdyż wszystkie funkcje były wykonywane tylko lokalnie u danego gracza.
+
+Jeśli wojownik atakował, potwory traciły życie, lecz ta informacja wyświetlała się tylko u jednego z graczy. To samo miało miejsce w przypadku animacji i poruszanych obiektów.
+
+Z drugiej strony pojawił się problem sterowania daną postacią, gdyż Unity nie odróżniało, do którego gracza należy dana postać i jeden z trzech graczy poruszał wszystkimi bohaterami.
+
+Najpierw zajęliśmy się problemem poruszania postaciami. Photon nadaje każdemu obiektowi posiadającemu komponent PhotonView odpowiednie ID. W skryptach, które odczytywały wszystkie sygnały z wejścia. Mogliśmy wykorzystać ten fakt i przed wykonaniem jakiejkolwiek operacji sprawdzaliśmy, czy dany widok, który wyświetla dany gracz jest zgodny z jego numerem ID. 
+
+Do rozwiązania problemu z przesyłaniem animacji oraz pozycji pomiędzy graczami użyliśmy na obiektach komponentów PhotonRigidBodyView oraz PhotonAnimatorView, które musiały zostać połączone z komponentem PhotonView przechowującym nasze unikalne ID.
+
+Finalnym krokiem było poprawne wykonywanie pozostałych funkcji, takie jak przenoszenie przedmiotów, atakowanie potworów, czy rozmowa z NPC.
+Rozwiązanie w tym wypadku zaimplementowaliśmy w naszym Menadżerze połączeń. 
+Domyślnie wszystkie skrypty, które kolidowały pomiędzy postaciami zostały na obiektach wyłączone. W momencie, gdy użytkownik łączy się do gry, wszystkie komponenty zostają aktywowane konkretnie dla danego obiektu. Dzięki tym zabiegom Framework odróżnia, który gracz wywołał daną funkcję oraz synchronizuje wszystkie dane u pozostałych użytkowników.
