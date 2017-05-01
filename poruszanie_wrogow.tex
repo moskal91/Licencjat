@@ -33,7 +33,7 @@ GameObject findNearestPlayer(float maxDistance)
 
 W przypadku, gdy wróg ``widzi,, postać gracza, jest w jego stronę stale odwrócony. Służy do tego algorytm, który najpierw wylicza kierunek w postaci wektora wartości w skalu 0.0f..1.0f w przestrzeni 3D, a następnie zamienia wektor na kąt, do którego stopniowo dąży. Daje to efekt płynnego obracania postaci wroga z możliwością dostosowania prędkości obrotu, aby ruchy wyglądały naturalnie, a wróg dawał możliwość np. zajścia go od tyłu.
 \\
-\begin{lstlisting}[caption={Algorytm zwracający wskaźnik do obiektu znajdującego się najbliżej, przy określonym maksymalnym promieniu poszukiwań}]
+\begin{lstlisting}[caption={Algorytm obracania postaci wroga w kierunku gracza}]
 private void rotateTowards(Transform target)
 {
     Vector3 direction = (target.position - transform.position).normalized;
