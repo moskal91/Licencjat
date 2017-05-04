@@ -14,32 +14,31 @@ Gra posiada określone poziomy. Bez wykonania odpowiednich zadań, które uprzed
 
 ## Spis treści 
 1. Wstęp i opis
-   - Porównanie dostępnych rozwiązań,
-      - Wordl of Warcraft,
-      - Diablo 3
+    - Porównanie dostępnych rozwiązań,
+        - World of Warcraft,
+        - Diablo 3
       
 1. Projektowanie oraz przygotowanie środowiska
-   - projekt Terenu,
-   - projekt Postaci sterowanych przez gracza,
-   - projekt systemu mulitplayer
-   - instalacja niezbędnych narzędzi
+    - Projekt Terenu,
+    - Projekt Postaci sterowanych przez gracza,
+    - Projekt systemu mulitplayer
+    - Instalacja niezbędnych narzędzi
    
 1. Implementacja
-   - budowa terenu
-   - tworzenie Postaci
-   - ruch kamery
-   - fizyka
-   - animacje
-   - poruszanie bohaterów
-   - poruszanie postaci wrogów
-   - nadanie bohaterom indywidualnych umiejętności
-   - obrażenia
-   - interakcja ze światem oraz NPC
+    - Budowa terenu
+    - Tworzenie Postaci
+    - Ruch kamery
+    - Fizyka
+    - Animacje
+    - Poruszanie bohaterów
+    - Poruszanie postaci wrogów
+    - Umiejętności bohaterów
+    - Multiplayer
 
 1. Bibliografia
-    - książki,
-    - artykuły dostępne w Internecie,
-    - poradniki dostępne na YouTube
+    - Książki,
+    - Artykuły dostępne w Internecie,
+    - Poradniki dostępne na YouTube
 
 ## Wstęp
 Gry komputerowe towarzyszą ludziom już od lat 40 XX-go wieku i należą obecnie do jednej z najpopularniejszych form rozrywki.

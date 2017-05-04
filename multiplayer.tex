@@ -1,14 +1,58 @@
 \subsection{Multiplayer}
-Ostatnim elementem implementacji naszego projektu był system Multiplayer. Stworzyliśmy Menadżera naszej sieci, który odpowiednio łączył graczy z serwerem i kontrolował ilość osób w danej rozgrywce. Napotkaliśmy jednak wiele problemów, gdyż wszystkie funkcje były wykonywane tylko lokalnie u danego gracza.
+Ostatnim elementem implementacji naszego projektu był system Multiplayer, który zbudowaliśmy na podstawie popularnego frameworku \name{Photon Unity Network}. Stworzyliśmy \textit{Menadżera} naszej sieci (komponent \name{NetworkManager}, który odpowiednio łączy graczy z serwerem i kontroluje ilość osób w danej rozgrywce. Problemem na tą chwilę okazały się skrypty, wykonywane dotąd lokalnie.
 
-Jeśli wojownik atakował, potwory traciły życie, lecz ta informacja wyświetlała się tylko u jednego z graczy. To samo miało miejsce w przypadku animacji i poruszanych obiektów.
+Jeśli wojownik atakował, potwory traciły punkty życia, lecz ta informacja wyświetlała się tylko u jednego z graczy, natomiast u pozostałych graczy, mimo zadawania obrażeń, pasek punktów życia wrogów wracał w ułamku sekundy do poprzedniego stanu. To samo miało miejsce w przypadku animacji i poruszanych obiektów.
 
-Z drugiej strony pojawił się problem sterowania daną postacią, gdyż Unity nie odróżniało, do którego gracza należy dana postać i jeden z trzech graczy poruszał wszystkimi bohaterami.
+Działo się tak, ponieważ synchronizacja danych polega na wysyłaniu ich przez jednego gracza i odbieraniu przez pozostałych. Jeśli dany gracz nie jest w danym momencie nadawcą, może jedynie odbierać dane o obiektach, efekty jego interakcji z otoczeniem zastępowane są stale poprzez odbierane dane.
 
-Najpierw zajęliśmy się problemem poruszania postaciami. Photon nadaje każdemu obiektowi posiadającemu komponent PhotonView odpowiednie ID. W skryptach, które odczytywały wszystkie sygnały z wejścia. Mogliśmy wykorzystać ten fakt i przed wykonaniem jakiejkolwiek operacji sprawdzaliśmy, czy dany widok, który wyświetla dany gracz jest zgodny z jego numerem ID. 
+Problem został rozwiązany na dwa sposoby. Zdarzenia jednorazowe, takie jak obrażenia, włączanie odpowiednich animacji, czy przejmowanie podnoszonego obiektu są wysyłane jednorazowo przez gracza wywołującego daną interakcję. Odbywa się to za pomocą \name{funkcji RPC}. Są to funkcje specjalnego przeznaczenia, które zachowują się jak zwykłe lokalne funkcje, lecz w momencie ich wywołania, uruchamiane są także u wszystkich pozostałych graczy, podłączonych do gry. Dzięki temu uniknęliśmy całkowicie kolizji związanych z przesyłaniem danych.
 
-Do rozwiązania problemu z przesyłaniem animacji oraz pozycji pomiędzy graczami użyliśmy na obiektach komponentów PhotonRigidBodyView oraz PhotonAnimatorView, które musiały zostać połączone z komponentem PhotonView przechowującym nasze unikalne ID.
+Do zdarzeń ciągłych, takich jak przenoszenie obiektów przez Maga, użyliśmy komponentu \name{PhotonView} i przypisanych jako jego parametry modułów \name{PhotonTransformView} oraz \name{PhotonRigidbodyView}, dzięki czemu obserwowane są określone parametry obiektu i nadawane w sposób ciągły do wszystkich odbiorców. Naprawia to także problemy z opóźnieniami w sieci, ponieważ framework wylicza płynną drogę obiektu z jednego miejsca do drugiego, dzięki czemu ruch nie jest poklatkowy. W tym wypadku jednak konieczne jest płynne przełączanie między nadawcami, np. w przypadku podniesienia obiektu, nadawcą jego pozycji staje się gracz, który ten obiekt podniósł (jest on określany automatycznie na podstawie klienta, który wywołał funkcję przejęcia kontroli nad obiektem):
+\\
+\begin{lstlisting}[caption={Funkcja przejmowania funkcji nadawania danych}]
+holdedThing.GetComponent<PhotonView> ().RequestOwnership ();
+\end{lstlisting}
 
-Finalnym krokiem było poprawne wykonywanie pozostałych funkcji, takie jak przenoszenie przedmiotów, atakowanie potworów, czy rozmowa z NPC.
-Rozwiązanie w tym wypadku zaimplementowaliśmy w naszym Menadżerze połączeń. 
-Domyślnie wszystkie skrypty, które kolidowały pomiędzy postaciami zostały na obiektach wyłączone. W momencie, gdy użytkownik łączy się do gry, wszystkie komponenty zostają aktywowane konkretnie dla danego obiektu. Dzięki tym zabiegom Framework odróżnia, który gracz wywołał daną funkcję oraz synchronizuje wszystkie dane u pozostałych użytkowników.
+Z drugiej strony pojawił się problem sterowania daną postacią, gdyż Unity nie odróżniało, do którego gracza należy dana postać i wciskanie klawiszy poruszało wszystkimi bohaterami (jako, że każdy z nich przypisany ma ten sam kod odpowiedzialny za sterowanie).
+
+Podczas łączenia z grą, Photon inicjalizuje wybraną postać i nadaje jej odpowiedni numer ID, powiązany z nadawcą. Dzięki temu postać gracza jest rozróżniana spośród innych i w prosty sposób można sprawdzić, czy funkcja została wywołania lokalnie, czy po stronie odbiorcy. W każdej lokalnej funkcji, powiązanej z postacią gracza umieściliśmy kod, który opuszcza funkcję, jeśli nie została ona wywołania dla postaci, którą sterujemy:
+\\
+\begin{lstlisting}[caption={Opuszczanie funkcji w przypadku, gdy postać gracza nie należy do nas}]
+if (!photonView.isMine) return;
+\end{lstlisting}
+
+Postać gracza wybierana jest na podstawie postaci, które są już podłączone, w określonej przez nas kolejności. Tworzymy listę dostępnych postaci, następnie iterujemy po podłączonych już graczach i usuwamy z listy kolejne elementy. Jeśli lista po przefiltrowaniu nie pozostaje pusta, wybieramy jej pierwszy element i na tej podstawie umieszczamy gracza na planszy:
+\\
+\begin{lstlisting}[caption={Algorytm wybierania postaci gracza}]
+// All available players with spawn order
+List<string> availPlayers = new List<string>();
+availPlayers.Add("Wizard"); 
+availPlayers.Add("Warrior");
+availPlayers.Add("Archer");
+
+
+foreach (PhotonPlayer otherPlayer in PhotonNetwork.otherPlayers)
+{
+    availPlayers = availPlayers.Remove(otherPlayer.NickName);
+    Debug.Log("Found other player: " + otherPlayer.NickName);
+}
+if (availPlayers.Count > 0)
+{
+    PhotonNetwork.player.NickName = availPlayers[0];
+}
+else
+{
+    Debug.Log("No more players left");
+    return;
+}
+Debug.Log("Let begin as " + PhotonNetwork.player.NickName);
+\end{lstlisting}
+
+Następnie obiekt postaci jest inicjalizowany w określonej pozycji (określonej poprzez pusty, otagowany \name{GameObject} umieszczony na mapie), jego kamera jest włączana oraz przejmowane są przez niego operacje nadawania informacji o sobie:
+\\
+\begin{lstlisting}[caption={Algorytm inicjalizacji postaci gracza}]
+// Instantiate player
+var currentPlayer = (GameObject)PhotonNetwork.Instantiate(spawnParams.prefab.name, spawnPoint.transform.position, spawnPoint.transform.rotation, 0);
+currentPlayer.transform.FindChild("Camera").gameObject.SetActive(true);
+currentPlayer.GetComponent<PhotonView>().RequestOwnership();
+\end{lstlisting}
