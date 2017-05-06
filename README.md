@@ -5,11 +5,15 @@ Autorzy: Adrian Podlawski, Mateusz Kleina rok 2017
 Unity, Game, Multiplayer, Cooperation, Adventure, RPG, C#, Unity, Photon, PUN
 
 ## Streszczenie 
-   Zaimplementowaliśmy wieloosobową grę w wersji Beta, która bazuje na silniku graficznym Unity. Tryb multiplayer zbudowaliśmy na podstawie frameworka Photon Unity 3D Networking, który został pobrany ze sklepu Asset Store, a następnie zmodyfikowany i zaprogramowany zgodnie z wymaganiami gry.
-    Scenę po której poruszają się postaci utworzyliśmy dzięki silnikowi gry Unity. Krajobrazy oraz budynki zostały pobrane z Assets Store, a następnie zmodyfikowane.
-    Wszystkie skrypty odpowiadające za sterowanie postaci, łączenie z serwerem, czy walkę z przeciwnikiem, zostały utworzone przez nas w języku programowania C Sharp.
-    Postaci oraz ich animacje zostały utworzone przy pomocy storny Mixamo.com, a następnie odpowiednio zaimplementowane przy pomocny skryptów.
-    W trakcie rozwijania aplikacji, pliki były przechowywane we wspólnym repozytorium na stronie Github.com. Zbudowana wersja gry znajduje się na repozytorium Git.Projekt był testowany manualnie poprzez sterowanie postaciami oraz przy użyciu logów przesyłanych do silnika Unity.Za środowisko testowe posłużył nam osobny serwer, który nie miał wpływu na wydaną wersję projektu, znajdującą się na repozytorium.
+Zaimplementowaliśmy wieloosobową grę w wersji Beta, która bazuje na silniku graficznym Unity. Tryb multiplayer zbudowaliśmy na podstawie frameworka Photon Unity 3D Networking, który został pobrany ze sklepu Asset Store, a następnie zmodyfikowany i zaprogramowany zgodnie z wymaganiami gry.
+   
+Scenę po której poruszają się postaci utworzyliśmy dzięki silnikowi gry Unity. Krajobrazy oraz budynki zostały pobrane z Assets Store, a następnie zmodyfikowane.
+    
+Wszystkie skrypty odpowiadające za sterowanie postaci, łączenie z serwerem, czy walkę z przeciwnikiem, zostały utworzone przez nas w języku programowania C Sharp.
+    
+Postaci oraz ich animacje zostały utworzone przy pomocy storny Mixamo.com, a następnie odpowiednio zaimplementowane przy pomocny skryptów.
+    
+W trakcie rozwijania aplikacji, pliki były przechowywane we wspólnym repozytorium na stronie Github.com. Zbudowana wersja gry znajduje się na repozytorium Git.Projekt był testowany manualnie poprzez sterowanie postaciami oraz przy użyciu logów przesyłanych do silnika Unity.Za środowisko testowe posłużył nam osobny serwer, który nie miał wpływu na wydaną wersję projektu, znajdującą się na repozytorium.
 
 
 ## Spis treści 
