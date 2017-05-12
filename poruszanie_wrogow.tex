@@ -1,8 +1,8 @@
-\subsection{Poruszanie postaci wrogów}\label{subsec:poruszanie_wrogow}
+\section{Poruszanie postaci wrogów}\label{sec:poruszanie_wrogow}
 
 Poruszanie wrogów odbywa się autonomicznie. Droga jest wyliczana, a koordynacje postaci zmieniane są zgodnie z wyliczoną drogą, dzięki czemu postacie wroga przemieszczają się płynnie w kierunku zdefiniowanego celu.
 
-Unity posiada mechanizm wyznaczania dróg na mapie terenu (więcej informacji na ten temat w dziale~\ref{subsec:budowa_terenu} na stronie \pageref{subsec:budowa_terenu}). Aby móc z niego skorzystać, dodaliśmy do postaci wroga agenta nawigacji \name{NavAgent}. Jest to komponent zajmujący się obliczeniami drogi i zarządzaniem przemieszczeniem i obrotem postaci w czasie. Podstawowym parametrem jest 3-wymiarowy wektór określający docelową pozycję, silnik gry zajmuje się wyliczeniem trasy prowadzącej do punktu.
+Unity posiada mechanizm wyznaczania dróg na mapie terenu (więcej informacji na ten temat w dziale~\ref{sec:budowa_terenu} na stronie \pageref{sec:budowa_terenu}). Aby móc z niego skorzystać, dodaliśmy do postaci wroga agenta nawigacji \name{NavAgent}. Jest to komponent zajmujący się obliczeniami drogi i zarządzaniem przemieszczeniem i obrotem postaci w czasie. Podstawowym parametrem jest 3-wymiarowy wektór określający docelową pozycję, silnik gry zajmuje się wyliczeniem trasy prowadzącej do punktu.
 
 Mechanika wrogów polega na wyszukiwaniu najbliżej znajdującej się postaci gracza, a następnie ustaleniu jej jako cel podążania wroga. W momencie, gry wróg znajduje się odpowiednio blisko, rozpoczyna atak.
 \\

@@ -1,6 +1,6 @@
-\subsection{Ruch kamery}
+\section{Ruch kamery}
 
-\paragraph{Pozycja kamery}
+\subsection{Pozycja kamery}
 
     Widok w grze jest trzecioosobowy, kamera obejmuje zarówno widzialny obszar jak i samego gracza. Pod tym względem jest to gra TPP (\textit{Third Person Perspective}). Przykładowymi grami tego typu są bardzo znane produkcje, takie jak seria \textit{Wiedźmin}, \textit{Tomb Raider}, czy \textit{GTA}.
 
@@ -14,7 +14,7 @@
     \caption{Dostosowanie pozycji kamery gracza względem aktualnego widoku sceny}
     \end{figure}
 
-\paragraph{Mechanika obrotu kamery}
+\subsection{Mechanika obrotu kamery}
 
 Kolejnym etapem jest oprogramowanie ruchu kamery za pomocą ruchów myszy. Mysz jest używana również do obrotu postacią. Jako, że kamera \enquote{przyklejona} jest do postaci, aby uzyskać efekt rozglądania się, modyfikujemy jedynie jej obrót w pionie, natomiast ruch myszy w poziomie obraca poziomo całą postać wraz z kamerą.
 
@@ -35,7 +35,7 @@ if (!stopCamera)
 
 Obrót kamery polega na dodaniu wektora obrotu do odpowiedniej osi kamery, natomiast wielkość wektora określona jest przez wartość chwilowego przesunięcia myszy, skalowanego parametrem \textit{rotationSensivity} w celu określenia czułości myszki. Parametr \textit{Time.deltaTime} zwraca czas od ostatniej wyrenderowanej klatki, co pozwala na uzyskanie jednolitej czułości myszki bez względu na ilość generowanych klatek na sekundę.
 
-\paragraph{Celownik}
+\subsection{Celownik}
 
 Aby ułatwić celowanie w przeciwników oraz interakcję z otoczeniem umieściliśmy w grze celownik, który w dalszym etapie tworzenia gry zmienia kolor informując o możliwej interakcji.
 

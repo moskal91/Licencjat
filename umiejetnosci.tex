@@ -1,7 +1,7 @@
-\subsection{Umiejętności Bohaterów}
+\section{Umiejętności Bohaterów}
 Zgodnie z naszymi założeniami każdy bohater miał być unikalny i odgrywać ważną rolę w całej rozgrywce. Wszystkich nadaliśmy różne umiejętności, a każda z nich jest niezbędna, by wspólnie ukończyć grę.
 
-\paragraph{Wojownik}
+\subsection{Wojownik}
 
 Wojownik słynie z ogromnej siły, jego zadaniem jest rozprawianie się z jak największą ilością przeciwników. Do jego postaci napisaliśmy skrypt, który pobiera listę obiektów znajdujących się w jego obrębie a następnie każdemu z nich odbiera życie. Skrypty dodawane są do postaci na podobnej zasadzie, jak \name{Komponenty}. W jednej z klatek animacji uderzenia mieczem ustawiliśmy tzw. \name{Trigger}, który uruchamia odpowiednie zdarzenie. Każda z postaci znajdujących się na planszy posiada specjalny \name{Tag}, jest to dodatkowa informacja o obiekcie w postaci ciągu znaków, w wypadku wroga jest to \textit{Enemy}. Siła rażenia zależna jest od rodzaju ataku (Wojownik posiada 2 rodzaje ataku - standardowy szybki oraz silny, który jednak trwa nieco dłużej).
 \\
@@ -29,7 +29,7 @@ void HitEvent(int type)
 \end{lstlisting}
 
 
-\paragraph{Mag}
+\subsection{Mag}
 
 Mag posiada umiejętność podnoszenia przedmiotów, którą możemy wykorzystać na dwa sposoby. Jednym z nich jest pokonywanie przeszkód, drugim atak. Specjalny skrypt umieszczony w komponentach wykorzystuje celownik, za którym podąża kamera. Gdy najedziemy celownikiem na obiekt o odpowiednim oznaczeniu, możemy go podnieść. Gracz może obracać przedmiot wokół własnej osi, oddalać go od siebie i przybliżać. Przy pomocy odpowiedniego przycisku może również rzucić trzymanym przedmiotem w przeciwnika. Dzięki wykorzystaniu grawitacji i kolizji z danymi przedmiotami możemy w ten sposób zabrać życie naszym przeciwnikom.
 
