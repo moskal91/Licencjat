@@ -1,8 +1,7 @@
-\section{Implementacja}
-\subsection{Budowa terenu}\label{subsec:budowa_terenu}
+\section{Budowa terenu}\label{sec:budowa_terenu}
 Budowa podstawowej mapy gry jest stosunkowo nieskomplikowanym procesem, dzięki czemu mogliśmy się tutaj skupić głównie na projektowaniu dróg, rozłożeniu obiektów i kształtowaniu mapy na potrzeby rozgrywki.
 
-\paragraph{Przygotowanie terenu}
+\subsection{Przygotowanie terenu}
 
     Do przygotowania terenu został użyty specjalnie do tego przeznaczony typ obiektu 3D o nazwie \name{Terrain}. Po utworzeniu takiego obiektu w hierarchii obiektów na ekranie ukaże się nieoteksturowana płaszczyzna.
 
@@ -11,7 +10,7 @@ Budowa podstawowej mapy gry jest stosunkowo nieskomplikowanym procesem, dzięki 
     \caption{Płaszczyzna terenu}
     \end{figure}
 
-\paragraph{Formowanie kształtu} 
+\subsection{Formowanie kształtu} 
 
     Na tak przygotowanej płaszczyźnie uformowane zostały nierówności przy użyciu palety narzędzi terenu. Używając opcji \name{Raise / Lower Terrain} utworzone zostały wypiętrzenia nadające kształt mapie gry. Charakter wypiętrzeń dostosowany został używając odpowiedniego pędzla z panelu \name{Brushes}, natomiast promień zniekształceń oraz siła efektu za pomocą parametrów kolejno \name{Brush Size} oraz \name {Opacity}.
 
@@ -20,7 +19,7 @@ Budowa podstawowej mapy gry jest stosunkowo nieskomplikowanym procesem, dzięki 
     \caption{Modelowanie nierówności terenu}
     \end{figure}
 
-\paragraph{Nakładanie tekstur}
+\subsection{Nakładanie tekstur}
 
     Kolejnym krokiem było utworzenie tekstury służącej do nadaniu naszemu terenowi koloru oraz faktury. Do tego celu pobrane zostały odpowiednie tekstury z wbudowanego sklepu assetów \name{Asset Store}. Assety są rodzajem pakietów zawierających różnorakie obiekty, skrypty oraz tekstury, dostępne do pobrania z serwerów Unity.
 
@@ -33,7 +32,7 @@ Budowa podstawowej mapy gry jest stosunkowo nieskomplikowanym procesem, dzięki 
     \caption{Nakładanie tekstur na mapę terenu}
     \end{figure}
 
-\paragraph{Rozmieszczanie obiektów}
+\subsection{Rozmieszczanie obiektów}
 
     Kolejnym krokiem w tworzeniu świata gry było umieszczenie na mapie sprefabrykowanych wcześniej obiektów (tzw. \textit{Prefabs}, o tym później). Wszystkie obiekty użyte w pracy są dostępne za darmo w bibliotece obiektów Unity (\name{Asset Store}). Po pobraniu, obiekty znajdują się w podfolderze \name{Prefabs} zainstalowanej paczki. Obiekty umieszcza się na mapie metodą przeciągnij-upuść, dostosowując ich koordynaty używając narzędzi transformacji dostępnych w pasku narzędzi znajdującym się w górnej części okna edytora.
 
@@ -42,11 +41,11 @@ Budowa podstawowej mapy gry jest stosunkowo nieskomplikowanym procesem, dzięki 
     \caption{Umieszczanie obiektów na mapie}
     \end{figure}
 
-    % Szczegóły kolizji w sekcji~\ref{subsec:fizyka} na stronie~\pageref{subsec:fizyka}
+    % Szczegóły kolizji w sekcji~\ref{sec:fizyka} na stronie~\pageref{sec:fizyka}
 
-\paragraph{Oddziaływanie terenu na inne obiekty}
+\subsection{Oddziaływanie terenu na inne obiekty}
 
-    Kluczowym elementem tworzenia mapy świata gry są takie elementy jak oddziaływanie na postacie ograniczeń nachylenia terenu typu wzgórza, drzewa, czy budynki, uniemożliwiających dostanie się w niektóre miejsca. Unity w celu uproszczenia obliczeń posiada możliwość wygenerowania uproszczonej mapy dróg (tzw. \textit{NavMesh}) na bazie modelu terenu, pozwalającej na dynamiczne omijanie przeszkód przez wroga (o tym później w sekcji \ref{subsec:poruszanie_wrogow} na stronie \pageref{subsec:poruszanie_wrogow}).
+    Kluczowym elementem tworzenia mapy świata gry są takie elementy jak oddziaływanie na postacie ograniczeń nachylenia terenu typu wzgórza, drzewa, czy budynki, uniemożliwiających dostanie się w niektóre miejsca. Unity w celu uproszczenia obliczeń posiada możliwość wygenerowania uproszczonej mapy dróg (tzw. \textit{NavMesh}) na bazie modelu terenu, pozwalającej na dynamiczne omijanie przeszkód przez wroga (o tym później w sekcji \ref{sec:poruszanie_wrogow} na stronie \pageref{sec:poruszanie_wrogow}).
 
     Aby utworzyć taką mapę, należy przejść do zakładki \name{Navigation}, gdzie w panelu \name{Bake} znajduje się lista parametrów dotyczących maksymalnego kąta nachylenia terenu, czy maksymalnej wysokości uskoku, którą obiekty sterowane przez komputer mogą pokonać.
 

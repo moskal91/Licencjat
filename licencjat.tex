@@ -1,11 +1,11 @@
-\documentclass{article}
+\documentclass[brudnopis]{xmgr}
+% \documentclass[openright]{xmgr}
 \usepackage[utf8]{inputenc}
 \usepackage{caption}
 \usepackage{color}
 \usepackage{float}
 \usepackage{graphicx}
 \usepackage{parskip}
-\usepackage{polski}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{csquotes}
 \usepackage{listings}
@@ -29,10 +29,6 @@
    \setlength{\parindent}{\currentparindent}
   }
   {\end{minipage}}
-
-% Grafiki bez wcięć akapitu
-\let\oldincludegraphics\includegraphics
-\renewcommand{\includegraphics}[2][]{\noindent\oldincludegraphics[#1]{#2}}
 
 % Specjalne oznaczenia
 \newcommand{\name}[1]{\textbf{\textcolor{NavyBlue}{#1}}}
@@ -62,27 +58,35 @@ basicstyle=\ttfamily\small,
 }
 
 % Dane licencjatu
-\title{Sieciowa fabularna\\gra komputerowa - The Trinity}
-\author{Kleina Mateusz, Podlawski Adrian}
-\date{12 kwietnia 2017}
+\wersja   {wersja wstępna [\ymdtoday]}
+\author   {Mateusz Kleina, Adrian Podlawski}
+\nralbumu {231\,068}
+\title    {Sieciowa fabularna gra komputerowa - The Trinity}
+\date     {2017}
+\miejsce  {Gdańsk}
+\opiekun  {dr W. Bzyl}
+
 
 \begin{document}
 
 % Strona tytułowa
-\begin{titlepage}
-\maketitle
-\tableofcontents
-\end{titlepage}
+\keywords{Gra, RPG, Multiplayer, Unity, PhotonUnityNetwork}
 
+\begin{abstract}
 \include{streszczenie}
+\end{abstract}
+
+\maketitle
 
 \include{wstep_i_opis}
 
+\chapter{Projektowanie oraz przygotowanie środowiska}
 \include{projekt_terenu}
 \include{projekt_postaci}
 \include{projekt_multiplayer}
 \include{instalacja_narzedzi}
-	
+
+\chapter{Implementacja}
 \include{budowa_terenu}
 \include{tworzenie_postaci}
 \include{ruch_kamery}
@@ -92,5 +96,7 @@ basicstyle=\ttfamily\small,
 \include{poruszanie_wrogow}
 \include{umiejetnosci}
 \include{multiplayer}
+
+\chapter{Bibliografia}
 \include{bibliografia}
 \end{document}

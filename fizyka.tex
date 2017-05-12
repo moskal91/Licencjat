@@ -1,4 +1,4 @@
-\subsection{Fizyka}\label{subsec:fizyka}
+\section{Fizyka}\label{sec:fizyka}
 
 Ważnym elementem gry jest fizyka, aby postaci mogły poruszać się, podskakiwać i reagować na kolizje.
 
@@ -14,7 +14,7 @@ Aby zdarzenia fizyczne mogły mieć miejsce, na elementy otoczenia oraz samą po
 
 W przypadku postaci poruszających się po mapie, zablokowane zostały obroty we wszystkich osiach (parametr \name{Freeze Rotation} komponentu Rigidbody), dzięki czemu nie przewracają się one na bok przy nierównościach terenu i kolizjach z otoczeniem. Zdarzenia fizyczne wyliczane są jedynie w pionie (spadanie, skok itp.).
 
-\paragraph{Mechanika skakania postaci}
+\subsection{Mechanika skakania postaci}
 
 Mając już zaimplementowaną fizykę, dodaliśmy możliwość skoku. Utworzona została metoda \textit{jump()}, która dodaje do zdarzeń fizycznych naszej postaci siłę w kierunku pionowym o wektorze ustalonym parametrem \textit{jumpPower}. Natomiast na podstawie kolizji z terenem ustalane jest, czy postać stoi na ziemi, dzięki czemu nie można wykonać kolejnego skoku będąc już w powietrzu.
 \\
