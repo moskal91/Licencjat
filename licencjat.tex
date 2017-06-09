@@ -68,7 +68,7 @@ morekeywords={partial, var, value, get, set},
 keywordstyle=\color{bluekeywords},
 stringstyle=\color{redstrings},
 basicstyle=\ttfamily\small,
-aboveskip=3em,
+aboveskip=2em,
 lineskip={0.3em}
 }
 
@@ -76,18 +76,19 @@ lineskip={0.3em}
 
 % streszczenie
 \begin{abstract}
-  Zaimplementowaliśmy wieloosobową grę w wersji Beta, która bazuje na silniku graficznym Unity.
+  Zaimplementowaliśmy wieloosobową grę w wersji Beta, która bazuje na silniku graficznym Unity 3D Personal.
   
-  Tryb multiplayer zbudowaliśmy na podstawie frameworka Photon Unity 3D Networking, który został pobrany ze sklepu Asset Store, a następnie zmodyfikowany i zaprogramowany zgodnie z wymaganiami gry.
+  Tryb multiplayer zbudowaliśmy przy użyciu darmowego frameworku Photon Unity 3D Networking, który znajduje się we wbudowanym w Unity sklepie Asset Store.
+  Framework pozwala na zarządzanie połączeniem, synchronizowanie obiektów znajdujących się na scenie oraz zdalne uruchamianie zaimplementowanych funkcji.
 
-  Scenę po której poruszają się postaci utworzyliśmy dzięki silnikowi gry Unity.
-  Krajobrazy oraz budynki zostały pobrane z Assets Store, a następnie zmodyfikowane.
-  Wszystkie skrypty odpowiadające za sterowanie postaci, łączenie z serwerem, czy walkę z przeciwnikiem, zostały utworzone przez nas w języku programowania C Sharp.
-  Postaci oraz ich animacje zostały utworzone przy pomocy storny \url{http://www.mixamo.com}, a następnie odpowiednio zaimplementowane przy pomocny skryptów.
+  Scenę, po której poruszają się postaci utworzyliśmy za pomocą edytora sceny będącego częścią zbioru narzędzi należących do silnika gry Unity.
+  Drzewa, budynki oraz inne tego typu obiekty zostały pobrane z Asset Store, a następnie zmodyfikowane według potrzeb i umieszczone na płaszczyźnie ukształtowanej za pomocą narzędzi edycji terenu.
+  Wszystkie skrypty odpowiadające za sterowanie postaci, łączenie z serwerem, czy walkę z przeciwnikiem, zostały utworzone przez nas w języku programowania C Sharp (lub inaczej C\#).
+  Postaci oraz ich animacje zostały utworzone przy pomocy narzędzia dostępnego na stronie \url{http://www.mixamo.com}, a następnie zaimportowane do silnika gry, odpowiednio skonfigurowane i oprogramowane przy pomocny skryptów.
 
-  W trakcie rozwijania aplikacji, pliki były przechowywane we wspólnym repozytorium na stronie \url{http://www.github.com}. Zbudowana wersja gry, którą można pobrać oraz uruchomić znajduje się na repozytorium Git (\url{https://www.github.com/kirin1994/ug-projekt-gra-rpg}).
-  Projekt był testowany manualnie poprzez sterowanie postaciami oraz przy użyciu logów przesyłanych do silnika Unity.
-  Za środowisko testowe posłużył nam osobny serwer, który nie miał wpływu na wydaną wersję projektu, znajdującą się na repozytorium.
+  W trakcie rozwijania aplikacji, pliki były przechowywane we wspólnym repozytorium Git na stronie \url{http://www.github.com}. Kod źródłowy gry wraz z plikami projektu znajduje się pod adresem \url{https://www.github.com/kirin1994/ug-projekt-gra-rpg}. Zbudowaną wersja gry, którą można pobrać oraz uruchomić znaleźć można w dziale Releases (\url{https://github.com/moskal91/ug-projekt-gra-rpg/releases}).
+  Projekt testowany był manualnie poprzez uruchamianie gry po dokonaniu zmian i sprawdzanie poprawności działania określonych elementów oraz debugowanie uruchamianych skryptów przy użyciu logów przesyłanych do silnika Unity. Tryb multiplayer testowany był poprzez uruchomienie kilku instancji gry i wywoływanie akcji w każdej z nich, obserwując efekty na ekranie. Kolejne wersje gry testowane były również zdalnie, poprzez uruchomienie gry na oddalonych od siebie komputerach.
+  Za środowisko testowe posłużył nam osobny serwer, który nie miał wpływu na wydaną wersję projektu, znajdującą się na repozytorium. Dostęp do serwera jest darmowy w ramach Unity 3D w wersji Personal, z limitem do 20 podłączonych graczy.
 \end{abstract}
 
 % słowa kluczowe
@@ -119,75 +120,24 @@ lineskip={0.3em}
   Gra miała posiadać przykładowe misje oraz stanowić fundament do dalszego jej rozwoju na tle fabularnym. Wszystkie powyższe założenia udało nam się zrealizować. 
 
 \chapter{Projektowanie oraz przygotowanie środowiska}
-  \section{Budowa terenu}\label{sec:budowa_terenu}
-
-    Budowa podstawowej mapy gry jest stosunkowo nieskomplikowanym procesem, dzięki czemu mogliśmy się tutaj skupić głównie na projektowaniu dróg, rozłożeniu obiektów i kształtowaniu mapy na potrzeby rozgrywki.
-
-    \subsection{Przygotowanie terenu}
-
-        Do przygotowania terenu został użyty specjalnie do tego przeznaczony typ obiektu 3D o nazwie \name{Terrain}. Po utworzeniu takiego obiektu w hierarchii obiektów na ekranie ukaże się nieoteksturowana płaszczyzna.
-
+    \section{Projekt Terenu}
+        Projektowanie naszego terenu zaczęliśmy od lokacji startowej, czyli miasta, w którym rozpoczyna się gra. 
+        Stworzyliśmy spustoszone miasto, które miało oddawać klimat, w jakim został osadzony cały projekt. 
         \begin{figure}[H]
-        \includegraphics[width=\textwidth]{teren_1.png}
-        \caption{Płaszczyzna terenu}
+            \center
+            \includegraphics[width=\textwidth]{scena.png}
+            \caption{Początkowa lokacja na scenie, w której bohaterowie rozpoczynają przygodę}
         \end{figure}
-
-    \subsection{Formowanie kształtu} 
-
-        Na tak przygotowanej płaszczyźnie uformowane zostały nierówności przy użyciu palety narzędzi terenu. Używając opcji \name{Raise / Lower Terrain} utworzone zostały wypiętrzenia nadające kształt mapie gry. Charakter wypiętrzeń dostosowany został używając odpowiedniego pędzla z panelu \name{Brushes}, natomiast promień zniekształceń oraz siła efektu za pomocą parametrów kolejno \name{Brush Size} oraz \name {Opacity}.
-
+        Na początku rozgrywki napotkamy kilku przeciwników oraz przerażoną kobietę, która wprowadzi nas w świat gry.  
+        Postaci kierowane przez graczy posiadają określoną rolę, dlatego dalsza część mapy została zaprojektowana z myślą o specjalnych umiejętnościach każdego z nich.
+        Po drodze możemy spotkać niezliczone grupy przeciwników oraz przeszkody w postaci ukształtowania terenu, które możemy pokonać tylko przy pomocy jednego z bohaterów.
+        Przez resztę rozgrywki poruszamy się krętą ścieżką, która prowadzi do oazy.
+        Jest to płaski otwarty teren, na którym bohaterowie będą mogli stoczyć ostateczną walkę ze źródłem swoich problemów.
         \begin{figure}[H]
-        \includegraphics[width=\textwidth]{teren_2.png}
-        \caption{Modelowanie nierówności terenu}
+            \center
+            \includegraphics[width=\textwidth]{scena2.png}
+            \caption{Przykładowa przeszkoda w postaci ukształtowania terenu}
         \end{figure}
-
-    \subsection{Nakładanie tekstur}
-
-        Kolejnym krokiem było utworzenie tekstury służącej do nadaniu naszemu terenowi koloru oraz faktury. Do tego celu pobrane zostały odpowiednie tekstury z wbudowanego sklepu assetów \name{Asset Store}. Assety są rodzajem pakietów zawierających różnorakie obiekty, skrypty oraz tekstury, dostępne do pobrania z serwerów Unity.
-
-        Po pobraniu odpowiedniej tekstury trawy, zostaje ona zaimportowana do folderu \name{Assets} znajdującego się w głównym katalogu projektu.
-
-        Po wybraniu narzędzia \name{Paint Texture} ukazuje się panel \name{Textures} pozwalający na skonfigurowanie używanej przez narzędzie tekstury. Znajduje się tam przycisk \name{Edit Textures...} po kliknięciu którego otwiera się okno konfiguracyjne tekstury pozwalające na wybór tekstury podstawowej oraz tekstury przechowującej dane o chropowatościach. Po skonfigurowaniu tekstur i nałożeniu ich na teren, całość prezentuje się następująco.
-
-        \begin{figure}[H]
-        \includegraphics[width=\textwidth]{teren_3.png}
-        \caption{Nakładanie tekstur na mapę terenu}
-        \end{figure}
-
-    \subsection{Rozmieszczanie obiektów}
-
-        Kolejnym krokiem w tworzeniu świata gry było umieszczenie na mapie sprefabrykowanych wcześniej obiektów (tzw. \textit{Prefabs}, o tym później). Wszystkie obiekty użyte w pracy są dostępne za darmo w bibliotece obiektów Unity (\name{Asset Store}). Po pobraniu, obiekty znajdują się w podfolderze \name{Prefabs} zainstalowanej paczki. Obiekty umieszcza się na mapie metodą przeciągnij-upuść, dostosowując ich koordynaty używając narzędzi transformacji dostępnych w pasku narzędzi znajdującym się w górnej części okna edytora.
-
-        \begin{figure}[H]
-        \includegraphics[width=\textwidth]{teren_obiekty.png}
-        \caption{Umieszczanie obiektów na mapie}
-        \end{figure}
-
-        % Szczegóły kolizji w sekcji~\ref{sec:fizyka} na stronie~\pageref{sec:fizyka}
-
-    \subsection{Oddziaływanie terenu na inne obiekty}
-
-        Kluczowym elementem tworzenia mapy świata gry są takie elementy jak oddziaływanie na postacie ograniczeń nachylenia terenu typu wzgórza, drzewa, czy budynki, uniemożliwiających dostanie się w niektóre miejsca. Unity w celu uproszczenia obliczeń posiada możliwość wygenerowania uproszczonej mapy dróg (tzw. \textit{NavMesh}) na bazie modelu terenu, pozwalającej na dynamiczne omijanie przeszkód przez wroga (o tym później w sekcji \ref{sec:poruszanie_wrogow} na stronie \pageref{sec:poruszanie_wrogow}).
-
-        Aby utworzyć taką mapę, należy przejść do zakładki \name{Navigation}, gdzie w panelu \name{Bake} znajduje się lista parametrów dotyczących maksymalnego kąta nachylenia terenu, czy maksymalnej wysokości uskoku, którą obiekty sterowane przez komputer mogą pokonać.
-
-        \begin{figure}[H]
-        \center
-        \includegraphics[width=6cm]{teren_obiekty2.png}
-        \caption{Parametry mapy dróg}
-        \end{figure}
-
-        Po ustaleniu parametrów i kliknięciu przycisku \name{Bake}, mapa zostaje wygenerowana, natomiast w oknie widoku sceny, obszary dostępne do przemierzania oznaczone zostają niebieskim kolorem. Operację można powtarzać do uzyskania optymalnych efektów.
-
-        \begin{figure}[H]
-        \center
-        \includegraphics[width=9cm]{teren_obiekty3.png}
-        \caption{Poprawnie wygenerowany \textit{NavMesh}}
-        \end{figure}
-
-        Tak przygotowana mapa posłużyła nam do projektowania dalszej części gry.
-
-        % Każdy obiekt utworzony w Unity posiada paletę komponentów. Komponenty pozwalają na określanie właściwości obiektów, takich jak rozmiar, pozycja, czy masa. Komponentami są również skrypty, pozwalające na określenie interacji obiektu z zewnętrznym światem (np. zdarzenie \textit{OnCollisionEnter}).
   
   \section{Projekt Postaci}
 
@@ -310,13 +260,13 @@ lineskip={0.3em}
 
         Tak przygotowana mapa posłużyła nam do projektowania dalszej części gry.
 
-        % Każdy obiekt utworzony w Unity posiada paletę komponentów. Komponenty pozwalają na określanie właściwości obiektów, takich jak rozmiar, pozycja, czy masa. Komponentami są również skrypty, pozwalające na określenie interacji obiektu z zewnętrznym światem (np. zdarzenie \textit{OnCollisionEnter}).}
+        % Każdy obiekt utworzony w Unity posiada paletę komponentów. Komponenty pozwalają na określanie właściwości obiektów, takich jak rozmiar, pozycja, czy masa. Komponentami są również skrypty, pozwalające na określenie interakcji obiektu z zewnętrznym światem (np. zdarzenie \textit{OnCollisionEnter}).}
 
   \section{Tworzenie Postaci}
 
     Po zaprojektowaniu postaci dołączyliśmy je do naszego folderu z projektem. Żeby nasza postać pojawiła się na mapie, musimy ją przeciągnąć na wcześniej utworzoną scenę. Tak oto otrzymaliśmy nieruchomy model naszego maga. Aby upewnić się, że jest on poprawnie ulokowany, możemy sprawdzić zakładkę Hierarchy, gdzie znajdziemy listę wszystkich dostępnych obiektów na mapie. 
 
-    W naszym wypadku nie możemy jednak umieścić postaci od razu w rozgrywce, gdyż nie będzie mogła ona być poprawnie sterowana przez danego gracza. Żeby system Multiplayer działał sprawnie, musimy stworzyć tak zwanego „Prefaba”, czyli obiekt w grze, który ma pewne właściwości, może zostać wielokrotnie użyty, lub pojawić się np. w momencie zalogowania gracza do gry. W tym celu musimy przeciągnąć nasz obiekt, który ma zamienić się w typ Prefab z listy Hierarchy, do naszego folderu (W tym przypadku jest to folder Assets). Teraz w celu ulokowania naszych magów na mapie, wystarczy przeciągnąć obiekt z rozszerzeniem .prefab na naszą scenę. Przy umieszczaniu takich samych obiektów Unity automatycznie będzie dodawało do naszej nazwy numer obiektu np. Wizard (1). 
+    W naszym wypadku nie możemy jednak umieścić postaci od razu w rozgrywce, gdyż nie będzie mogła ona być poprawnie sterowana przez danego gracza. Żeby system Multiplayer działał sprawnie, musimy stworzyć tak zwany „Prefab”, czyli obiekt w grze, który ma pewne właściwości, może zostać wielokrotnie użyty, lub pojawić się np. w momencie zalogowania gracza do gry. W tym celu musimy przeciągnąć nasz obiekt, który ma zamienić się w typ Prefab z listy Hierarchy, do naszego folderu (W tym przypadku jest to folder Assets). Teraz w celu ulokowania naszych magów na mapie, wystarczy przeciągnąć obiekt z rozszerzeniem .prefab na naszą scenę. Przy umieszczaniu takich samych obiektów Unity automatycznie będzie dodawało do naszej nazwy numer obiektu np. Wizard (1). 
 
     \begin{figure}[H]
       \center
@@ -359,7 +309,7 @@ lineskip={0.3em}
 
         Aby uzyskać efekt kamery podążającej za graczem, obiekt kamery powinien zostać umieszczony wewnątrz obiektu gracza w hierarchii obiektów. W ten sposób koordynacje kamery będą ustawiane względem gracza, a sama kamera poruszać się będzie i obracać wraz z nadrzędnym obiektem.
 
-        Koordynacje kamery ustawiliśmy na (0, 0, 0), w ten sposób kamera jest w środkowym punkcie obiektu nadrzędnego i wytarczy za pomocą narzędzi transformacji przesunąć ją do oczekiwanej pozycji (tak, aby obejmowała obraz zza pleców postaci). Inną, bardziej poręczną metodą jest odpowiednie dostosowanie widoku sceny i skopiowanie jego koordynatów do zaznaczonej w hierarchii kamery.
+        Koordynacje kamery ustawiliśmy na (0, 0, 0), w ten sposób kamera jest w środkowym punkcie obiektu nadrzędnego i wystarczy za pomocą narzędzi transformacji przesunąć ją do oczekiwanej pozycji (tak, aby obejmowała obraz zza pleców postaci). Inną, bardziej poręczną metodą jest odpowiednie dostosowanie widoku sceny i skopiowanie jego koordynatów do zaznaczonej w hierarchii kamery.
 
         \begin{figure}[H]
         \center
@@ -418,7 +368,7 @@ if (!stopCamera)
 
       Podstawowym komponentem zapewniającym obliczenia fizyczne jest \name{Rigidbody}. Komponent ten przyjmuje parametry takie jak wartość masy, tarcia, czy wyłączenie grawitacji.
 
-      Aby zdarzenia fizyczne mogły mieć miejsce, na elementy otoczenia oraz samą postać gracza nałożone powinny zostać komponenty \name{Collider}. Są to obszary określające granice kolizji. Mogą one mieć kształt kapsuły, sześcianu, bądź uproczczonego modelu samego obiektu. Pozwalają one silnikowi gry na przyspieszenie obliczeń i płynne reakcje na zdarzenia kolizji.
+      Aby zdarzenia fizyczne mogły mieć miejsce, na elementy otoczenia oraz samą postać gracza nałożone powinny zostać komponenty \name{Collider}. Są to obszary określające granice kolizji. Mogą one mieć kształt kapsuły, sześcianu, bądź uproszczczonego modelu samego obiektu. Pozwalają one silnikowi gry na przyspieszenie obliczeń i płynne reakcje na zdarzenia kolizji.
 
       \begin{figure}[H]
       \center
@@ -493,7 +443,7 @@ void OnTriggerEnter(Collider other)
         \end{figure}
 
 
-    W Blend Tree możemy wykorzystać również stopniowe zwiększanie się naszych parametrów. Najlepszy efekt wspomnianej funkcjonalności możemy zaobserwoać w momencie, gdy nasz użytkownik zdecyduje się na sterowanie kontrolerem z gałkami analogowymi, które są czułe na siłę nacisku. Im bardziej gracz będzie przesuwał analog w przód, tym bardziej nasza postać będzie się pochylać i przechodzić płynnie do kolenej animacji.
+    W Blend Tree możemy wykorzystać również stopniowe zwiększanie się naszych parametrów. Najlepszy efekt wspomnianej funkcjonalności możemy zaobserwować w momencie, gdy nasz użytkownik zdecyduje się na sterowanie kontrolerem z gałkami analogowymi, które są czułe na siłę nacisku. Im bardziej gracz będzie przesuwał analog w przód, tym bardziej nasza postać będzie się pochylać i przechodzić płynnie do kolejnej animacji.
 
     \begin{figure}[H]
         \center
@@ -528,7 +478,7 @@ if (Input.GetKey(KeyCode.W))
 
     Poruszanie wrogów odbywa się autonomicznie. Droga jest wyliczana, a koordynacje postaci zmieniane są zgodnie z wyliczoną drogą, dzięki czemu postacie wroga przemieszczają się płynnie w kierunku zdefiniowanego celu.
 
-    Unity posiada mechanizm wyznaczania dróg na mapie terenu (więcej informacji na ten temat w dziale~\ref{sec:budowa_terenu} na stronie \pageref{sec:budowa_terenu}). Aby móc z niego skorzystać, dodaliśmy do postaci wroga agenta nawigacji \name{NavAgent}. Jest to komponent zajmujący się obliczeniami drogi i zarządzaniem przemieszczeniem i obrotem postaci w czasie. Podstawowym parametrem jest 3-wymiarowy wektór określający docelową pozycję, silnik gry zajmuje się wyliczeniem trasy prowadzącej do punktu.
+    Unity posiada mechanizm wyznaczania dróg na mapie terenu (więcej informacji na ten temat w dziale~\ref{sec:budowa_terenu} na stronie \pageref{sec:budowa_terenu}). Aby móc z niego skorzystać, dodaliśmy do postaci wroga agenta nawigacji \name{NavAgent}. Jest to komponent zajmujący się obliczeniami drogi i zarządzaniem przemieszczeniem i obrotem postaci w czasie. Podstawowym parametrem jest 3-wymiarowy wektor określający docelową pozycję, silnik gry zajmuje się wyliczeniem trasy prowadzącej do punktu.
 
     Mechanika wrogów polega na wyszukiwaniu najbliżej znajdującej się postaci gracza, a następnie ustaleniu jej jako cel podążania wroga. W momencie, gry wróg znajduje się odpowiednio blisko, rozpoczyna atak.
 
@@ -559,7 +509,7 @@ GameObject findNearestPlayer(float maxDistance)
     \caption{Obszary interakcji postaci wroga}
     \end{figure}
 
-    W przypadku, gdy wróg ,,widzi'' postać gracza, jest w jego stronę stale odwrócony. Służy do tego algorytm, który najpierw wylicza kierunek w postaci wektora wartości w skalu 0.0f..1.0f w przestrzeni 3D, a następnie zamienia wektor na kąt, do którego stopniowo dąży. Daje to efekt płynnego obracania postaci wroga z możliwością dostosowania prędkości obrotu, aby ruchy wyglądały naturalnie, a wróg dawał możliwość np. zajścia go od tyłu.
+    W przypadku, gdy wróg ,,widzi'' postać gracza, jest w jego stronę stale odwrócony. Służy do tego algorytm, który najpierw wylicza kierunek w postaci wektora wartości w skali 0.0f..1.0f w przestrzeni 3D, a następnie zamienia wektor na kąt, do którego stopniowo dąży. Daje to efekt płynnego obracania postaci wroga z możliwością dostosowania prędkości obrotu, aby ruchy wyglądały naturalnie, a wróg dawał możliwość np. zajścia go od tyłu.
 
 \begin{minipage}{\textwidth}
 \begin{lstlisting}[caption={Algorytm obracania postaci wroga w kierunku gracza}]
@@ -662,7 +612,7 @@ if (holdedThing != null)
 
   \section{Multiplayer}
 
-      Ostatnim elementem implementacji naszego projektu był system Multiplayer, który zbudowaliśmy na podstawie popularnego frameworku \name{Photon Unity Network}. Stworzyliśmy \textit{Menadżera} naszej sieci (komponent \name{NetworkManager}, który odpowiednio łączy graczy z serwerem i kontroluje ilość osób w danej rozgrywce. Problemem na tą chwilę okazały się skrypty, wykonywane dotąd lokalnie.
+      Ostatnim elementem implementacji naszego projektu był system Multiplayer, który zbudowaliśmy na podstawie popularnego frameworku \name{Photon Unity 3D Networking}. Stworzyliśmy \textit{Menadżera} naszej sieci (komponent \name{NetworkManager}, który odpowiednio łączy graczy z serwerem i kontroluje ilość osób w danej rozgrywce. Problemem na tą chwilę okazały się skrypty, wykonywane dotąd lokalnie.
 
       Jeśli wojownik atakował, potwory traciły punkty życia, lecz ta informacja wyświetlała się tylko u jednego z graczy, natomiast u pozostałych graczy, mimo zadawania obrażeń, pasek punktów życia wrogów wracał w ułamku sekundy do poprzedniego stanu. To samo miało miejsce w przypadku animacji i poruszanych obiektów.
 
