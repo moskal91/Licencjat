@@ -35,7 +35,6 @@
 \date     {2017}
 \miejsce  {Gdańsk}
 \opiekun  {dr W. Bzyl}
-\def\@rodzajpracy{licencjacka}
 
 % dodatkowe polecenia
 %\renewcommand{\filename}[1]{\texttt{#1}}
@@ -55,9 +54,9 @@
 \definecolor{redstrings}{rgb}{0.9,0,0}
 \lstset{language=[Sharp]C,
 captionpos=b,
-%numbers=left, %Nummerierung
-%numberstyle=\tiny, % kleine Zeilennummern
-frame=lines, % Oberhalb und unterhalb des Listings ist eine Linie
+%numbers=left,
+%numberstyle=\tiny,
+frame=lines,
 showspaces=false,
 showtabs=false,
 breaklines=true,
@@ -78,6 +77,8 @@ lineskip={0.3em}
 % streszczenie
 \begin{abstract}
   Zaimplementowaliśmy wieloosobową grę w wersji Beta, która bazuje na silniku graficznym Unity 3D Personal.
+
+  Zarys gry powstał pierwotnie w czteroosobowym zespole jako projekt w ramach zajęć zatytułowany ,,Temat 3: Wieloosobowa gra fabularna". Jako, że wkład pozostałych członków w tworzenie gry był niewielki, kontynuowaliśmy ją w dwuosobowym składzie. Szczegóły dotyczące wkładu pracy poszczególnych członków zespołu znajdują się na końcu pracy.
   
   Tryb multiplayer zbudowaliśmy przy użyciu darmowego frameworku Photon Unity 3D Networking, który znajduje się we wbudowanym w Unity sklepie Asset Store.
   Framework pozwala na zarządzanie połączeniem, synchronizowanie obiektów znajdujących się na scenie oraz zdalne uruchamianie zaimplementowanych funkcji.
@@ -107,7 +108,7 @@ lineskip={0.3em}
 
   Szukaliśmy języka programowania, który jest wszechstronny i może być wykorzystany w różnych projektach min. przy budowaniu dużych stron internetowych, gier, serwisów. Po namyśle zdecydowaliśmy się na język C Sharp. Jest on zorientowany obiektowo, dzięki temu mogliśmy wykorzystać nasze doświadczenie min. z języka Java.  Ma on bardzo szerokie zastosowanie, może być wykorzystany do tworzenia aplikacji desktopowych, Windows Service, dzięki niemu możemy również tworzyć rozbudowane strony internetowe przy użyciu technologii ASP.NET opartej na .NET Framework. Wybierając jednak nowy język programowania, chcieliśmy również skorzystać z technologii, która umożliwi nam przetestowanie naszych umiejętności zupełnie na innej płaszczyźnie.
 
-  Aktualnie na świecie miliony osób grają w gry przeróżnego typu, a my należymy do tej bardzo licznej społeczności. Do tej pory jednak nie mieliśmy przed sobą zadania, by stworzyć jedną z nich od podstaw. Chcieliśmy podjąć się tego wyzwania i za silnik graficzny obraliśmy Unity, który współgra z językiem C Sharp, a do tego obsługuje aż 22 platformy sprzętowe i co raz częściej wykorzystywany jest również w przeglądarkach internetowych oraz wirtualnej rzeczywistości.Wiedzieliśmy, że będzie do dla nas wyzwanie, ale zarazem wielki krok w początkach naszej kariery, jako młodych programistów.
+  Aktualnie na świecie miliony osób grają w gry przeróżnego typu, a my należymy do tej bardzo licznej społeczności. Do tej pory jednak nie mieliśmy przed sobą zadania, by stworzyć jedną z nich od podstaw. Chcieliśmy podjąć się tego wyzwania i za silnik graficzny obraliśmy Unity, który współgra z językiem C Sharp, a do tego obsługuje aż 22 platformy sprzętowe i co raz częściej wykorzystywany jest również w przeglądarkach internetowych oraz wirtualnej rzeczywistości. Wiedzieliśmy, że będzie do dla nas wyzwanie, ale zarazem wielki krok w początkach naszej kariery, jako młodych programistów.
 
   Unity daje możliwość tworzenia gry bez wdrażania się w szczegóły techniczne dotyczące renderowania obrazu i obsługi różnych kart graficznych, obliczania skomplikowanych równań fizycznych czy korzystania z protokołów sieciowych. Tworzenie gier nie wymaga już niskopoziomowego kodu, stało się przyjaźniejsze i bardziej dostępne dla programistów chcących skupić się na samej mechanice gry.
 
@@ -369,7 +370,7 @@ if (!stopCamera)
 
       Podstawowym komponentem zapewniającym obliczenia fizyczne jest \name{Rigidbody}. Komponent ten przyjmuje parametry takie jak wartość masy, tarcia, czy wyłączenie grawitacji.
 
-      Aby zdarzenia fizyczne mogły mieć miejsce, na elementy otoczenia oraz samą postać gracza nałożone powinny zostać komponenty \name{Collider}. Są to obszary określające granice kolizji. Mogą one mieć kształt kapsuły, sześcianu, bądź uproszczczonego modelu samego obiektu. Pozwalają one silnikowi gry na przyspieszenie obliczeń i płynne reakcje na zdarzenia kolizji.
+      Aby zdarzenia fizyczne mogły mieć miejsce, na elementy otoczenia oraz samą postać gracza nałożone powinny zostać komponenty \name{Collider}. Są to obszary określające granice kolizji. Mogą one mieć kształt kapsuły, sześcianu, bądź uproszczonego modelu samego obiektu. Pozwalają one silnikowi gry na przyspieszenie obliczeń i płynne reakcje na zdarzenia kolizji.
 
       \begin{figure}[H]
       \center
@@ -725,10 +726,85 @@ Mixamo\\
 (dostęp 22.04.2017)
 \end{thebibliography}
 
+\chapter*{Sterowanie}
+\addcontentsline{toc}{chapter}{Sterowanie}
+\section*{Mag}
+\begin{enumerate}
+\item{Mag potrafi chwytać oraz przesuwać przedmioty.}
+\item{Gdy Celownik znajduje się na przedmocie typu kamień, }czy kłoda (Celownik zaświeci się) wciskamy LEWY PRZYCISK MYSZY.
+\item{By rzucić danym przedmiotem klikamy klawisz T.}
+\item{Przedmiot można również obracać wokół właśnej osi, przytrzymując dodatkowo PRAWY PRZYCISK MYSZY.}
+\end{enumerate}
+
+\section*{Wojownik}
+\begin{enumerate}
+\item{Zwykły atak wykonujemy wciskając LEWY PRZYCISK MYSZY.}
+\item{Podczas sprintu (SHIFT) Wojownik wykonuje mocniejszy atak (wciskając PRAWY PRZYCISK MYSZY).}
+\end{enumerate}
+
+\section*{Łucznik}
+\begin{enumerate}
+\item{Tryb celowania - PRAWY PRZYCISK MYSZY.}
+\item{Podczas trybu celowania (Trzymając PPM) możemy wykonać strzał z łuku wciskając LEWY PRZYCISK MYSZY.}
+\end{enumerate}
+
+\chapter*{Wkład pracy członków zespołu}
+\addcontentsline{toc}{chapter}{Wkład pracy członków zespołu}
+
+Określenie indywidualnego wkładu w pracę każdego z członków zespołu:
+
+\begin{enumerate}
+\item{Mateusz Kleina}
+\begin{enumerate}
+\item {Przygotowanie i konfiguracja środowiska}
+\item {Usprawnianie działania systemu gry sieciowej (m. in. poprzez użycie zawołań RPC)}
+\item {Skrypty poruszania kamerą}
+\item {Skrypty lewitacji obiektów przez postać Maga}
+\item {Skrypty interakcji z postaciami fabularnymi}
+\item {Skrypty obsługi i synchronizacji sieciowej poziomu obrażeń wroga oraz postaci gracza}
+\item {Elementy interfejsu gry (pasek zdrowia, celownik)}
+\end{enumerate}
+\item{Adrian Podlawski}
+\begin{enumerate}
+\item{Tworzenie systemu gry sieciowej}
+\item{Tworzenie mapy świata gry}
+\item{Animacja postaci}
+\item{Skrypty ataku przez postać Wojownika}
+\item{Skrypty poruszania postacią gracza}
+\item{Tworzenie menu gry z funkcją wyboru pokoju (tzw. \textit{lobby})}
+\end{enumerate}
+\end{enumerate}
+
+Wkład pracy pozostałych członków starego zespołu projektu zespołowego tworzonego w ramach zajęć zatytułowanego ,,Temat 3: Wieloosobowa gra fabularna":
+\begin{enumerate}
+\item{Karol Klimaszewski (numer indeksu 231066) -- pierwotny projekt terenu, który został przez nas zmodyfikowany oraz skrypt poruszania postaci wroga, który został całkowicie usunięty i zastąpiony}
+\item{Maciej Marzec (numer indeksu 231056) -- cykl dnia i nocy (z powodu błędów został usunięty) oraz modele koni pobrane z \name{Asset Store}}
+\end{enumerate}
+
 % spis rysunków (jeżeli jest potrzebny):
 % \listoffigures
 \summary
 	Podczas pracy nad projektem zrealizowaliśmy wszystkie założone cele.  Poznaliśmy nie tylko nowy język programowania oraz technologie, ale również w znacznym stopniu rozwinęliśmy umiejętności pisania wydajnego kodu. W przyszłości planujemy rozwinąć nasz projekt na tle fabularnym oraz rozbudować scenę, po której poruszają się bohaterowie.
+	
+\def\oswiadczenieText{%
+Ja, niżej podpisana(y), oświadczam, że przedłożona praca dyplomowa (powstała w ramach studenckiego ruchu naukowego/będąca rezultatem pracy zespołu studentów*) została przygotowana przeze mnie – w części, za którą odpowiadam - samodzielnie, nie narusza praw autorskich, interesów prawnych i materialnych innych osób.\endgraf }
+%
+\long\def\oswiadczenie{%%\newpage 
+\if@twocolumn \onecolumn \fi
+\chapter*{Oświadczenie}%
+\addcontentsline{toc}{chapter}{Oświadczenie}%
+\par 
+\vskip6mm
+\noindent
+\oswiadczenieText
+\par\vskip12mm 
+\centerline{\vbox{%
+\hbox to.8\textwidth{\hbox to45mm{\dotfill}\hss 
+   \hbox to45mm{\dotfill}} 
+\hbox to.8\textwidth{\hbox to45mm{\hss data\hss}\hss
+\hbox to45mm{\hss podpis\hss}}%
+}}\par
+\newpage }
 \oswiadczenie
 
 \end{document}

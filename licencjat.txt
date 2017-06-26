@@ -883,6 +883,52 @@ Mixamo\
 <https://www.mixamo.com>\
 (dostęp 22.04.2017)
 
+Sterowanie
+==========
+
+Mag
+
+- Mag potrafi chwytać oraz przesuwać przedmioty.
+- Gdy Celownik znajduje się na przedmocie typu kamień, czy kłoda (Celownik zaświeci się) wciskamy LEWY PRZYCISK MYSZY.
+- By rzucić danym przedmiotem klikamy klawisz T.}
+\item{Przedmiot można również obracać wokół właśnej osi, przytrzymując dodatkowo PRAWY PRZYCISK MYSZY.
+
+Wojownik
+
+- Zwykły atak wykonujemy wciskając LEWY PRZYCISK MYSZY.
+- Podczas sprintu (SHIFT) Wojownik wykonuje mocniejszy atak (wciskając PRAWY PRZYCISK MYSZY).
+
+Łucznik
+
+- Tryb celowania - PRAWY PRZYCISK MYSZY.
+- Podczas trybu celowania (Trzymając PPM) możemy wykonać strzał z łuku wciskając LEWY PRZYCISK MYSZY.
+
+Określenie indywidualnego wkładu w pracę każdego z członków zespołu:
+
+Mateusz Kleina
+
+Przygotowanie i konfiguracja środowiska
+Usprawnianie działania systemu gry sieciowej (m. in. poprzez użycie zawołań RPC)
+Skrypty poruszania kamerą
+Skrypty lewitacji obiektów przez postać Maga
+Skrypty interakcji z postaciami fabularnymi
+Skrypty obsługi i synchronizacji sieciowej poziomu obrażeń wroga oraz postaci }gracz
+Elementy interfejsu gry (pasek zdrowia, celownik)
+
+Adrian Podlawski
+
+- Tworzenie systemu gry sieciowej
+- Tworzenie mapy świata gry
+- Animacja postaci
+- Skrypty ataku przez postać Wojownika
+- Skrypty poruszania postacią gracza
+- Tworzenie menu gry z funkcją wyboru pokoju (tzw. \textit{lobby})
+
+Wkład pracy pozostałych członków starego zespołu projektu zespołowego tworzonego w ramach zajęć zatytułowanego ,,Temat 3: Wieloosobowa gra fabularna":
+
+- Karol Klimaszewski (numer indeksu 231066) -- pierwotny projekt terenu, który został przez nas zmodyfikowany oraz skrypt poruszania postaci wroga, który został całkowicie usunięty i zastąpiony
+- Maciej Marzec (numer indeksu 231056) -- cykl dnia i nocy (z powodu błędów został usunięty) oraz modele koni pobrane z Asset Store
+
 Zakończenie
 ===========
 
