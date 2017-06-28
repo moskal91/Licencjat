@@ -439,7 +439,7 @@ pozwalają na skalowane go względem podanej rozdzielczości referencyjnej.
 Wewnątrz takiego płótna można umieszczać obrazy, elementy interfejsu
 oraz różnego rodzaju wskaźniki (np. Pasek postępu życia bohatera).
 
-![Konfiguracja płutna 2D do wyświetlania interfejsu
+![Konfiguracja płótna 2D do wyświetlania interfejsu
 gry](celownik_1.png){width="5cm"}
 
 Wewnątrz płótna został umieszczony obrazek (komponent Image) celownika,
